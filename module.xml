@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="OpenTelemetry-Trace-SOAP.ZPM">
+    <Module>
+      <Name>OpenTelemetry-Trace-SOAP</Name>
+      <Version>1.0</Version>
+      <Packaging>module</Packaging>
+      <SourcesRoot>src</SourcesRoot>
+      <Resource Name="SOAP.OpenTelemetryHelp.inc"/>
+      <Resource Name="SOAP.PKG"/>
+      <CSPApplication
+        Url="/csp/irisapp"
+        IsNamespaceDefault="1"
+        DefaultTimeout="900"
+        SourcePath="/src/csp"
+        DeployPath="/usr/irissys/csp/irisapp"
+        ServeFiles="1"
+        Recurse="1"
+        CookiePath="/csp"
+        UseCookies="2"
+        MatchRoles=":${dbrole}"
+        PasswordAuthEnabled="1"
+        UnauthenticatedEnabled="0"
+       />
+    </Module>
+  </Document>
+</Export>

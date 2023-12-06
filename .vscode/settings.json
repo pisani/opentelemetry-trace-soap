@@ -1,0 +1,7 @@
+{
+    "objectscript.conn": {
+        "server": "irishealth",
+        "ns": "SONIC",
+        "active": true
+    }
+}

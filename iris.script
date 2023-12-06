@@ -1,0 +1,14 @@
+    ;disabling password expire for development purposes
+    zn "%SYS"
+    Do ##class(Security.Users).UnExpireUserPasswords("*")
+
+    ; Allow %SOAP.WebServiceInvoke class foro easy testing of WebService
+    set ^SYS("Security","CSP","AllowClass","/csp/irisapp/","%SOAP.WebServiceInvoke")=1
+
+    zpm "install passwordless"
+   
+    ; importing the source code of the repository as ZPM module
+    zn "IRISAPP"
+    zpm "load /home/irisowner/dev -v":1:1
+    
+    halt

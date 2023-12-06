@@ -1,0 +1,24 @@
+version: '3.6'
+services:
+  iris:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    hostname: IRIS
+    ports:
+      - 1972:1972
+      - 52773:52773
+      - 53773:53773
+    volumes:
+      - ./:/home/irisowner/dev
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.47
+    hostname: JAEGER
+    ports:
+      - 16686:16686
+      - 4317:4317
+      - 4318:4318
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
