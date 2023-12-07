@@ -26,19 +26,17 @@ Method OnPreWebMethod() [ GenerateAfter = OnPreWebMethod, ServerOnly = 1 ]
 		set otelOperation=..OTELSoapOperationName()
 		set otelSpanAttributes=..OTELDefineSpanAttributes()
 		; create telemetry span object, and, array of spans for this process
-		set (%OTELSpan,%OTELSpanArr(0))=..pyStartSpan(otelOperation,otelOperation,otelSpanAttributes)	
+		set %OTELSpanArr(0)=..pyStartSpan(otelOperation,otelOperation,otelSpanAttributes)	
 	}
 }
 
 /// End the initial span
 Method OnPostWebMethod() [ GenerateAfter = OnPreWebMethod, ServerOnly = 1 ]
 {
-	quit:'$d(%OTELSpan)
-
 	set span=$Get(%OTELSpanArr(0))
 	if $IsObject(span) {
 		do ..pyEndSpan(span,"")
-		kill %OTELSpanArr,%OTELSpan
+		kill %OTELSpanArr
 	}
 }
 
@@ -66,8 +64,8 @@ Method OTELDefineSpanAttributes() As %ArrayOfDataTypes
 /// Log a Trace Event. 
 ClassMethod OTELLogManualEvent(EventText, EventAttributes As %Library.ArrayOfDataTypes, AutoTimeStamp = 1)
 {
-	; quit of no to telemetry span defined.
-	quit:'$IsObject($get(%OTELSpan))
+	; get current span
+	set spanId=$order(%OTELSpanArr(""),-1,currentSpan)
 
 	set pyAttributes = ##class(%SYS.Python).Builtins().dict()
 	
@@ -92,7 +90,7 @@ ClassMethod OTELLogManualEvent(EventText, EventAttributes As %Library.ArrayOfDat
 			do pyAttributes.setdefault(key,value)
 		}
 	}
-	do ..pyOTELLogManualEvent(%OTELSpan,EventText,pyAttributes)
+	do ..pyOTELLogManualEvent(currentSpan,EventText,pyAttributes)
 }
 
 /// Log a Trace Event.  This is *not working*
@@ -200,11 +198,12 @@ ClassMethod OTELPushChildSpan(childSpanName, spanAttributes = "")
 		set spanAttributes=##Class(%ArrayOfDataTypes).%New()
 	}
  
+	set spanId=$order(%OTELSpanArr(""),-1,currentSpan)
 
 	; work with current span to create child span
-	set childSpan=..pyOTELPushChildSpan(%OTELSpan,childSpanName,spanAttributes)
+	set childSpan=..pyOTELPushChildSpan(currentSpan,childSpanName,spanAttributes)
 	if $ISOBJECT(childSpan) {
-		set (%OTELSpan,%OTELSpanArr($i(%OTELSpanArr)))=childSpan
+		set (%OTELSpanArr($i(%OTELSpanArr)))=childSpan
 	}
 }
 
@@ -225,15 +224,15 @@ ClassMethod pyOTELPushChildSpan(parent, childSpanName, childSpanAttributes) As %
 ClassMethod OTELPopChildSpan()
 {
 	/// bring into focus the latest current span
-	set internalID=$order(%OTELSpanArr(""),-1,%OTELSpan)
+	set internalID=$order(%OTELSpanArr(""),-1,currentSpan)
 	
-	do ..pyEndSpan(%OTELSpan,"")
+	do ..pyEndSpan(currentSpan,"")
 	kill %OTELSpanArr(internalID)
 	
 	// check if it wasn't the first, root/initial span that was just deleted, as node 0 will 
 	// not exist - so avoid <undef> error.
 	if internalID'=0 {
-		set internalID=$order(%OTELSpanArr(""),-1,%OTELSpan)
+		set internalID=$order(%OTELSpanArr(""),-1,currentSpan)
 	}
 }
 
