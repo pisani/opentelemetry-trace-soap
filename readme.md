@@ -7,8 +7,8 @@ It's true that InterSystems IRIS has several ways to capture, log and analyse th
 
 Whilst there is ongoing development to natively support this observability standard in future IRIS releases, this article explains how, with the help of the Embedded Python and the corresponding Python libraries, IRIS application developers can start publishing Trace events to your OpenTelemetry back-ends with minimal effort.  More importantly, this gives my customer somethign to get up and running with today. 
 
-## A brief note on Observability in general. 
-Observability in generally comprises three main aspects:
+## A brief note on Observability. 
+Observability generally comprises of three main aspects:
 
 ## 
 * Metrics capture, which is the capture of quantitative measuremements about the performance and behaiour of a system, similar to what IRIS publishes via its /api/monitor/metrics api
@@ -56,18 +56,19 @@ This will startup two containers - the Jaeger OpenTelemetry target backend conta
 
 The IRIS instance hosts three simple SOAP Services:
 
-* GetIRISVersion():   
-Return the $ZV value of the IRIS instance
-Other than the default functionality, no additonal observations are made
+* GetIRISVersion():
+    - Return the $ZV value of the IRIS instance
+    - Other than the default functionality, no additonal observations are made
 * Divide(a, b): 
-This method takes two integers and returns the value of their division. It arbitrarily starts a child span, and within that a second nested span before completion,
-Using $$$OTELPushChildSpan(..) macros available, the method identifies a span of code, wrapped around another span of code. These spans are visible as nested spand in the Jaeger UI
-Using $$$OTELLog(..) arbitrary data is logged with the current span
+    - This method takes two integers and returns the value of their division. It arbitrarily starts a child span, and within that a second nested span before completion,
+    - Demonstrates using $$$OTELPushChildSpan(..) macro, in a method with multiple nested span levels. These spans are visible as nested spand in the Jaeger UI
+    - Uses $$$OTELLog(..) with arbitrary logs to add detail to the current span
 * RunQuery() 
-This method runs a query and tracks a span of time for Preparing the query and a subsequent (later) time period for Executing the query
-Using $$$OTELPushChildSpan(..) macros available, the method identifies 2 independant, subsquent spans of code wrapped around Preperation and Execution of the query
-These spans are visible as siblings in the Jaeger UI
-Using $$$OTELLog(..) arbitrary data is logged with the current span
+    - This method runs a query to count classes
+    - Demos starting an independant span tracking query prepration, and execution
+    - Using $$$OTELPushChildSpan(..) macros available, the method identifies these operations a independant, non-nested logic blocks
+    - These spans are visible as siblings in the Jaeger UI
+    - Using $$$OTELLog(..) arbitrary logs to add further detail
 
 The Web service functionality is trivial and largely irrelevant, but serves to show telemetry tracing in action. 
 
@@ -81,6 +82,7 @@ Using your browser access the SOAP Information and testing pages via this URL. l
 ```
 http://localhost:52773/csp/irisapp/SOAP.MyService.cls
 ```
+<img src=images/IRISSoapTesting.png alt="IRIS Soap Testing page">
 (Note: These pages are not enabled by default and security within the running IRIS instance had to be relaxed to enable this feature, for ease of testing)
 
 
@@ -91,3 +93,5 @@ Open another browser tab pull up the Jaeger UI via the following URL
 http://localhost:16686
 ```
 The resulting landing page shows you all services contributing telemetry readings and should look something similar to the screenshot below:
+
+<img src=images/JaegerUI.png alt="Jaeger UI Showing Traces">

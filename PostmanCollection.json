@@ -42,7 +42,7 @@
 					},
 					{
 						"key": "SOAPAction",
-						"value": "\"#GetIRISVersion\"",
+						"value": "GetIRISVersion",
 						"type": "text"
 					}
 				],
@@ -102,7 +102,7 @@
 					},
 					{
 						"key": "SOAPAction",
-						"value": "\"Divide\"",
+						"value": "Divide",
 						"type": "text"
 					}
 				],
@@ -138,7 +138,7 @@
 					},
 					{
 						"key": "SOAPAction",
-						"value": "\"RunQuery\"",
+						"value": "RunQuery",
 						"type": "text"
 					}
 				],
