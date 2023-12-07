@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="786c03a2-b6e6-4f53-8cf7-15702bd64909" activeEnvironment="Default" name="SOAP.MyService" resourceRoot="" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="d5d3e395-6724-4588-8387-951c13f12408" wsaVersion="NONE" name="MyServiceTestSoap" type="wsdl" bindingName="{http://tempuri.org}MyServiceTestSoap" soapVersion="1_1" anonymous="optional" definition="http://localhost:52773/csp/irisapp/SOAP.MyService.cls?WSDL=1&amp;IRISUSERNAME=superuser&amp;IRISPASSWORD=SYS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:52773/csp/irisapp/SOAP.MyService.cls?WSDL=1&amp;IRISUSERNAME=superuser&amp;IRISPASSWORD=SYS"><con:part><con:url>http://localhost:52773/csp/irisapp/SOAP.MyService.cls?WSDL=1&amp;IRISUSERNAME=superuser&amp;IRISPASSWORD=SYS</con:url><con:content><![CDATA[<definitions targetNamespace="http://tempuri.org" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://tempuri.org" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:element name="Divide">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="a" type="s:string"/>
+            <s:element minOccurs="0" name="b" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DivideResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="DivideResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIRISVersion">
+        <s:complexType>
+          <s:sequence/>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIRISVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetIRISVersionResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunQuery">
+        <s:complexType>
+          <s:sequence/>
+        </s:complexType>
+      </s:element>
+      <s:element name="RunQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="RunQueryResult" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="DivideSoapIn">
+    <part name="parameters" element="s0:Divide"/>
+  </message>
+  <message name="DivideSoapOut">
+    <part name="parameters" element="s0:DivideResponse"/>
+  </message>
+  <message name="GetIRISVersionSoapIn">
+    <part name="parameters" element="s0:GetIRISVersion"/>
+  </message>
+  <message name="GetIRISVersionSoapOut">
+    <part name="parameters" element="s0:GetIRISVersionResponse"/>
+  </message>
+  <message name="RunQuerySoapIn">
+    <part name="parameters" element="s0:RunQuery"/>
+  </message>
+  <message name="RunQuerySoapOut">
+    <part name="parameters" element="s0:RunQueryResponse"/>
+  </message>
+  <portType name="MyServiceTestSoap">
+    <operation name="Divide">
+      <input message="s0:DivideSoapIn"/>
+      <output message="s0:DivideSoapOut"/>
+    </operation>
+    <operation name="GetIRISVersion">
+      <input message="s0:GetIRISVersionSoapIn"/>
+      <output message="s0:GetIRISVersionSoapOut"/>
+    </operation>
+    <operation name="RunQuery">
+      <input message="s0:RunQuerySoapIn"/>
+      <output message="s0:RunQuerySoapOut"/>
+    </operation>
+  </portType>
+  <binding name="MyServiceTestSoap" type="s0:MyServiceTestSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="Divide">
+      <soap:operation soapAction="http://tempuri.org/SOAP.MyService.Divide" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="GetIRISVersion">
+      <soap:operation soapAction="http://tempuri.org/SOAP.MyService.GetIRISVersion" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="RunQuery">
+      <soap:operation soapAction="http://tempuri.org/SOAP.MyService.RunQuery" style="document"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="MyServiceTest">
+    <port name="MyServiceTestSoap" binding="s0:MyServiceTestSoap">
+      <soap:address location="http://localhost:52773/csp/irisapp/SOAP.MyService.cls"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:52773/csp/irisapp/SOAP.MyService.cls</con:endpoint></con:endpoints><con:operation id="1381c77e-f0d9-4019-b549-87661f7f3c84" isOneWay="false" action="http://tempuri.org/SOAP.MyService.Divide" name="Divide" bindingOperationName="Divide" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3d29e9d4-7968-4ef8-bce5-16713166cc64" name="Request 1" wssPasswordType="PasswordText"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@wss-time-to-live"> </con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:52773/csp/irisapp/SOAP.MyService.cls</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:Divide>\r
+         <!--Optional:-->\r
+         <tem:a>234234</tem:a>\r
+         <!--Optional:-->\r
+         <tem:b>234</tem:b>\r
+      </tem:Divide>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>superuser</con:username><con:password>SYS</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/SOAP.MyService.Divide"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="d9a4b0db-d9cc-4eb3-b3bc-f0b757fde759" isOneWay="false" action="http://tempuri.org/SOAP.MyService.GetIRISVersion" name="GetIRISVersion" bindingOperationName="GetIRISVersion" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="2ca12ba7-e1bf-4a16-ac73-ddd33b4ba786" name="Request 1" wssPasswordType="PasswordText"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:52773/csp/irisapp/SOAP.MyService.cls</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:GetIRISVersion/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>superuser</con:username><con:password>SYS</con:password><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/SOAP.MyService.GetIRISVersion"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="4be255c8-773d-4b25-85fb-f5d86c065c5b" isOneWay="false" action="http://tempuri.org/SOAP.MyService.RunQuery" name="RunQuery" bindingOperationName="RunQuery" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="95fa2b46-4826-49f3-b7a5-fdfe4ed0f60e" name="Request 1" wssPasswordType="PasswordText"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:52773/csp/irisapp/SOAP.MyService.cls</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tem:RunQuery/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:username>superuser</con:username><con:password>SYS</con:password><con:authType>No Authorization</con:authType></con:credentials><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/SOAP.MyService.RunQuery"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -1,5 +1,5 @@
 /// SOAP.MyService
-Class SOAP.MyService Extends (%SOAP.WebService, SOAP.OpenTelemetrySupport)
+Class SOAP.MyService Extends SOAP.WebService
 {
 
 /// Name of the WebService.
@@ -12,21 +12,10 @@ Parameter NAMESPACE = "http://tempuri.org";
 /// Namespaces of referenced classes will be used in the WSDL.
 Parameter USECLASSNAMESPACES = 1;
 
-/// The OnInternalFault method may be overridden by the user to change the default SOAP
-///  fault returned by InterSystems IRIS for internal errors.
-/// OnInternalFault is passed the fault which may be modified to suit the applications needs.
-/// After OnInternalFault returns this fault will be sent to the SOAP client.
-/// The %Status that represents the error is also passed.
-ClassMethod OnInternalFault(fault As %SOAP.Fault, status As %Status) [ Private, ServerOnly = 1 ]
-{
-	if $IsObject($get(%OTELSpan)) do ..pyEndSpan(%OTELSpan,$SYSTEM.Status.GetErrorText(status))	
-	Quit
-}
-
 /// GetVersion
 Method GetIRISVersion() As %String [ WebMethod ]
 {
-	Return $H
+	Return $zversion
 }
 
 /// Nested Spans

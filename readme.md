@@ -17,7 +17,7 @@ Observability in generally comprises three main aspects:
 It is important to not that the focus of this article is solely on Traceing of SOAP Services.
 
 ## Approach for implementation:
-Create a superclass with OpenTelemetry implementation which implementations of SOAP Services can simply subclass to adopt this framework.  Provision of Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed.  The Diagram below illustrates this approach:
+Extend IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService to SOAP.WebService as the Web Services implementation class).  The Diagram below illustrates this approach:
 
 <img src="images/Approach.png" alt="Design approach">
 
@@ -90,5 +90,4 @@ Open another browser tab pull up the Jaeger UI via the following URL
 ```
 http://localhost:16686
 ```
-
 The resulting landing page shows you all services contributing telemetry readings and should look something similar to the screenshot below:

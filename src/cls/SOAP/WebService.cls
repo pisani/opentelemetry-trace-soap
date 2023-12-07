@@ -1,6 +1,6 @@
-Include SOAP.OpenTelemetryHelp
+Include SOAP.WebServiceMacros
 
-Class SOAP.OpenTelemetrySupport [ Abstract ]
+Class SOAP.WebService Extends %SOAP.WebService [ Abstract ]
 {
 
 /// Http Endpoint for OTLPCollector 
@@ -37,15 +37,6 @@ Method OnPostWebMethod() [ GenerateAfter = OnPreWebMethod, ServerOnly = 1 ]
 	if $IsObject(span) {
 		do ..pyEndSpan(span,"")
 		kill %OTELSpanArr
-	}
-}
-
-Method OnPreSOAP(mode As %String, action As %String, request) [ Internal, ServerOnly = 1 ]
-{
-	// record 
-	set %OTELSOAPAction=action
-	if mode="test" {
-		set %OTELSOAPAction=%request.Data("soap_method",1)
 	}
 }
 
@@ -243,6 +234,39 @@ ClassMethod OTELPopChildSpan()
 	if internalID'=0 {
 		set internalID=$order(%OTELSpanArr(""),-1,currentSpan)
 	}
+}
+
+/// Callback before a SOAP request.  This callback meant to be used by Interoperability
+/// and should thus never be specified for a subclass of Enslib.SOAP.Service<br><br>
+/// 
+/// The mode argument specifies the type of SOAP request "SOAP", "binary" or "test".<br>
+/// The pAction argument contains the value of SOAPAction header.<br>
+/// The request argument contains the SOAP request.  For a normal SOAP request, the request
+/// argument will be a stream containing the request.  For a MIME SOAP request,
+/// the request argument will be a multidimensional array of %CSP.Streams that is subscripted 
+/// by the position in the original multipart message.  request(1) is the SOAP message.<br><br>
+/// 
+/// If the SoapFault property has been set, then a SOAP fault will be
+/// written instead of calling the web method.  This callback may also set the
+/// SoapFault property in order to return a SOAP fault.
+Method OnPreSOAP(mode As %String, action As %String, request) [ Internal, ServerOnly = 1 ]
+{
+	// record 
+	set %OTELSOAPAction=action
+	if mode="test" {
+		set %OTELSOAPAction=%request.Data("soap_method",1)
+	}
+}
+
+/// The OnInternalFault method may be overridden by the user to change the default SOAP
+///  fault returned by InterSystems IRIS for internal errors.
+/// OnInternalFault is passed the fault which may be modified to suit the applications needs.
+/// After OnInternalFault returns this fault will be sent to the SOAP client.
+/// The %Status that represents the error is also passed.
+ClassMethod OnInternalFault(fault As %SOAP.Fault, status As %Status) [ Private, ServerOnly = 1 ]
+{
+	if $IsObject($get(%OTELSpan)) do ..pyEndSpan(%OTELSpan,$SYSTEM.Status.GetErrorText(status))	
+	Quit
 }
 
 }
