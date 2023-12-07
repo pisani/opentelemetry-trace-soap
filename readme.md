@@ -86,7 +86,7 @@ http://localhost:52773/csp/irisapp/SOAP.MyService.cls
 (Note: These pages are not enabled by default and security within the running IRIS instance had to be relaxed to enable this feature, for ease of testing)
 
 
-Select each of the web methods you want to test, in order to generate SOAP activity.  To see this implementation generate an Error in the observed traces, use zero (0) as the second number in the Divide() SOAP method in order to force a <DIVDE> error.
+Select each of the web methods you want to test, in order to generate SOAP activity.  To see this implementation generate traces with a Status of 'Error'. use zero (0) as the second number in the Divide() SOAP method in order to force a <DIVDE> error.
 
 Open another browser tab pull up the Jaeger UI via the following URL
 ```
