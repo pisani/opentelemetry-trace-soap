@@ -2,6 +2,9 @@
     zn "%SYS"
     Do ##class(Security.Users).UnExpireUserPasswords("*")
 
+    ; Allow %SOAP.WebServiceInfo class for display of service methods
+    set ^SYS("Security","CSP","AllowClass","/csp/irisapp/","%SOAP.WebServiceInfo")=1
+
     ; Allow %SOAP.WebServiceInvoke class foro easy testing of WebService
     set ^SYS("Security","CSP","AllowClass","/csp/irisapp/","%SOAP.WebServiceInvoke")=1
 

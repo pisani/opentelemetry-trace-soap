@@ -233,8 +233,7 @@ ClassMethod OTELPopChildSpan()
 	// check if it wasn't the first, root/initial span that was just deleted, as node 0 will 
 	// not exist - so avoid <undef> error.
 	if internalID'=0 {
-		set internalID=internalID-1
-		set %OTELSpan=%OTELSpanArr(internalID)
+		set internalID=$order(%OTELSpanArr(""),-1,%OTELSpan)
 	}
 }
 
