@@ -19,9 +19,7 @@ It is important to not that the focus of this article is solely on Traceing of�
 ## Approach for implementation:
 Create a superclass with OpenTelemetry implementation which implementations of SOAP Services can simply subclass to adopt this framework.  Provision of Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed.  The Diagram below illustrates this approach:
 
-
-
-
+<img src="https://github.com/pisani/OpenTelemetry.images/Approach.png" alt="Design approach">
 
 
 
