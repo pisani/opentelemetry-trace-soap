@@ -40,13 +40,22 @@ Method OnPostWebMethod() [ GenerateAfter = OnPreWebMethod, ServerOnly = 1 ]
 	}
 }
 
+Method OnPreSOAP(mode As %String, action As %String, request) [ Internal, ServerOnly = 1 ]
+{
+	// record 
+	set %OTELSOAPAction=action
+	if mode="test" {
+		set %OTELSOAPAction=%request.Data("soap_method",1)
+	}
+}
+
 /// Define Open Telemetry Operation string using values from %session or %request
 /// eg: for URL without web method arguments:  				"/csp/irisapp/SOAP.MyService.cls?soap_method=DivideNumbers"
 /// 	quit $piece(%request.CgiEnvs("REQUEST_URI"),"&")
 /// 
 Method OTELSoapOperationName() As %String
 {
-	quit ..#SERVICENAME
+	quit %OTELSOAPAction
 }
 
 /// Create array of attributes as required to be defined with *every* web method here.
