@@ -6,7 +6,7 @@
       <Version>1.0</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
-      <Resource Name="SOAP.OpenTelemetryHelp.inc"/>
+      <Resource Name="SOAP.WebServiceMacros.inc"/>
       <Resource Name="SOAP.PKG"/>
       <CSPApplication
         Url="/csp/irisapp"
