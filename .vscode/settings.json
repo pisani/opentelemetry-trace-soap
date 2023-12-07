@@ -1,7 +1,7 @@
 {
     "objectscript.conn": {
-        "server": "irishealth",
-        "ns": "SONIC",
+        "server": "irisdocker",
+        "ns": "IRISAPP",
         "active": true
     }
 }
