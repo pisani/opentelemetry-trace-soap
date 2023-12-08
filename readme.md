@@ -108,4 +108,4 @@ The Telemetry user interface will display record of the timeing for each of the 
    
 # Conclusion
 In summary, this article demonstrates how Embedded Python, could be used to add additional features to IRIS, such as, support for Observability tracing for IRIS implemented SOAP services.   
-Looking ahead, this sample can be enhanced and developed forther, for example, the utility can be turned into a more generic OpenTelemetry support class that implements the same for REST services, or, the ability to enable any IRIS Class Method to generate and broadcast telemetry data.
+Looking ahead, this sample code can be enhanced and developed further, for example, the utility can be turned into a more generic OpenTelemetry support class that implements the same for REST services, or, the ability to enable any IRIS Class Method to generate and broadcast telemetry data enablked via a new method signature attribute.
