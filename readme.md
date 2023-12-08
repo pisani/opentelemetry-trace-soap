@@ -53,8 +53,6 @@ $ docker-compose up -d
 ```
 
 This will startup two containers - the Jaeger OpenTelemetry target backend container (also exposing a user interface), and, an instance of IRIS which will serve as the SOAP Web Services server endpoint.  
-
-## How to Test and view the results.
 Generating trace information for the SOAP Web Methods can be done by building SOAP client (using your favourite technology) and then calling these services, just as any user or application would do in a real-world application. 
 
 However - In order to simplify this process, and purely for demonstration purposes, we will leverage IRIS's helper CSP pages that allows us to call these SOAP methods from a browser:
