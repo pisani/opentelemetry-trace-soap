@@ -36,17 +36,17 @@ Extend IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and
 
 
 # Installation and testing
-Clone/git pull the repo into any local directory
+1. Clone/git pull the repo into any local directory
 
 ```
 $ git clone https://github.com/intersystems-community/OpenTelemetry-Trace-SOAP.git
 ```
-Open a terminal window in this directory and type the following to build the IRIS images with sample code:
+2. Open a terminal window in this directory and type the following to build the IRIS images with sample code:
 
 ```
 $ docker-compose build
 ```
-Once the iris image is build, in the same directory type the following to start up the Jaeger and IRIS containers:
+3. Once the iris image is build, in the same directory type the following to start up the Jaeger and IRIS containers:
 
 ```
 $ docker-compose up -d
@@ -87,12 +87,13 @@ The IRIS instance hosts three simple SOAP Services:
 The Web service functionality is trivial and largely irrelevant, but serves to show telemetry tracing in action. 
 Select each of the web methods you want to test, in order to generate SOAP activity.  To see this implementation generate traces with a Status of 'Error'. use zero (0) as the second number in the Divide() SOAP method in order to force a <DIVDE> error.
 
-Open another browser tab pull up the Jaeger UI via the following URL
+1. Open another browser tab pull up the Jaeger UI using the following URL
 ```
 http://localhost:16686
 ```
-The resulting landing page shows you all services contributing telemetry readings and should look something similar to the screenshot below:
 
+2. From the home page and the Service drop-down box select the telemetry service:  IRISSERVER:IRIS, and click on the button Find TRACES
+    
 <img src=images/JaegerUI.png alt="Jaeger UI Showing Traces">
 
 # Conclusion
