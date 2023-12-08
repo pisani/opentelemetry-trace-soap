@@ -41,7 +41,7 @@ The diagram below illustrates this approach:
 1.  Clone/git pull the repo into any local directory
 
 ```
-$ git clone https://github.com/intersystems-community/OpenTelemetry-Trace-SOAP.git
+$ git clone https://github.com/intersystems-community/OpenTelemetry.git
 ```
 2.  Open a terminal window in this directory and type the following to build the IRIS images with sample code:
 
