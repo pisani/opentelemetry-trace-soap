@@ -57,7 +57,7 @@ Generating trace information for the SOAP Web Methods can be done by building S
 
 However - In order to simplify this process, and purely for demonstration purposes, we will leverage IRIS's helper CSP pages that allows us to call these SOAP methods from a browser:
 
-Using your browser access the SOAP Information and testing pages via this URL. logging in as superuser/SYS if prompted:
+4.  Using your browser access the SOAP Information and testing pages via this URL. logging in as superuser/SYS if prompted:
 
 ```
 http://localhost:52773/csp/irisapp/SOAP.MyService.cls
@@ -85,12 +85,12 @@ The IRIS instance hosts three simple SOAP Services:
 The Web service functionality is trivial and largely irrelevant, but serves to show telemetry tracing in action. 
 Select each of the web methods you want to test, in order to generate SOAP activity.  To see this implementation generate traces with a Status of 'Error'. use zero (0) as the second number in the Divide() SOAP method in order to force a <DIVDE> error.
 
-4.  Open another browser tab pull up the Jaeger UI using the following URL
+5.  Open another browser tab pull up the Jaeger UI using the following URL
 ```
 http://localhost:16686
 ```
 
-5.  From the home page and the Service drop-down box select the telemetry service:  IRISSERVER:IRIS, and click on the button Find TRACES
+6.  From the home page and the Service drop-down box select the telemetry service:  IRISSERVER:IRIS, and click on the button Find TRACES
     
 <img src=images/JaegerUI.png alt="Jaeger UI Showing Traces">
 
