@@ -23,7 +23,7 @@ In this implementation which is only using IRIS as the technology to generate te
 Subclass IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions in a new calss called SOAP.WebService. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService with SOAP.WebService as the Web Service superclass for implementing SOAP.
 The diagram below illustrates this approach:
 
-<img src="https://raw.githubusercontent.com/pisani/OpenTelemetry/master/images/Approach.png" alt="Design approach">
+<img src="https://raw.githubusercontent.com/pisani/opentelemetry-trace-soap/master/images/Approach.png" alt="Design approach">
 
 
 ## Features of this implementation:
@@ -41,7 +41,7 @@ The diagram below illustrates this approach:
 1.  Clone/git pull the repo into any local directory
 
 ```
-$ git clone https://github.com/intersystems-community/OpenTelemetry.git
+$ git clone https://github.com/intersystems-community/opentelemetry-trace-soap.git
 ```
 2.  Open a terminal window in this directory and type the following to build the IRIS images with sample code:
 
@@ -63,7 +63,7 @@ However - In order to simplify this process, and purely for demonstration purpos
 
     [http://localhost:52773/csp/irisapp/SOAP.MyService.cls](http://localhost:52773/csp/irisapp/SOAP.MyService.cls)
 
-   <img src="https://raw.githubusercontent.com/pisani/OpenTelemetry/master/images/IRISSoapTesting.png" alt="IRIS Soap Testing page">
+   <img src="https://raw.githubusercontent.com/pisani/opentelemetry-trace-soap/master/images/IRISSoapTesting.png" alt="IRIS Soap Testing page">
 
 The IRIS instance hosts three simple SOAP Services:
 
@@ -96,14 +96,14 @@ Select each of the web methods you want to test, in order to generate SOAP activ
 
 7.  Click on the green button "Find Traces"
     
-     <img src="https://raw.githubusercontent.com/pisani/OpenTelemetry/master/images/JaegerUI.png" alt="Jaeger UI Showing Traces">
+     <img src="https://raw.githubusercontent.com/pisani/opentelemetry-trace-soap/master/images/JaegerUI.png" alt="Jaeger UI Showing Traces">
 
 The Telemetry user interface will display record of the timeing for each of the SOAP services that where called, once for each invocation with a graph plotting performacne time. Note that there are several OpenTelemetry visualisation tools that will accept and plot telemetry data in ths same way.  
 
 8. Explore the contents of each service call. For example, click on the Operation 'Divide' to expand and view the identified nested spans configured with this SOAP Service, as well as any arbitrary log entries.
 
 
-     <img src="https://raw.githubusercontent.com/pisani/OpenTelemetry/master/images/JaegerUIDetail.png" alt="Jaeger UI Trace Detail">
+     <img src="https://raw.githubusercontent.com/pisani/opentelemetry-trace-soap/master/images/JaegerUIDetail.png" alt="Jaeger UI Trace Detail">
 
  
 # Conclusion
