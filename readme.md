@@ -66,7 +66,7 @@ However - In order to simplify this process, and purely for demonstration purpos
 ```
 http://localhost:52773/csp/irisapp/SOAP.MyService.cls
 ```
-<img src=images/IRISSoapTesting.png alt="IRIS Soap Testing page">
+      <img src=images/IRISSoapTesting.png alt="IRIS Soap Testing page">
 
 The IRIS instance hosts three simple SOAP Services:
 
@@ -97,14 +97,14 @@ http://localhost:16686
 
 7.  Click on the green button "Find Traces"
     
-<img src=images/JaegerUI.png alt="Jaeger UI Showing Traces">
+      <img src=images/JaegerUI.png alt="Jaeger UI Showing Traces">
 
 The Telemetry user interface will display record of the timeing for each of the SOAP services that where called, once for each invocation with a graph plotting performacne time. Note that there are several OpenTelemetry visualisation tools that will accept and plot telemetry data in ths same way.  
 
 8. Explore the contents of each service call. For example, click on the Operation 'Divide' to expand and view the identified nested spans configured with this SOAP Service, as well as any arbitrary log entries.
 
 
-
+    <img src="images/JaegerUIDetail.png" alt="JAeger UI Trace Detail">
    
 # Conclusion
 In summary, this article demonstrates how Embedded Python, could be used to add additional features to IRIS, such as, support for Observability tracing for IRIS implemented SOAP services.   
