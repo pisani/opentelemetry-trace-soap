@@ -18,7 +18,7 @@ Observability generally comprises of three main aspects:
 This application focuses solely on Tracing of SOAP Services.
 
 A Trace identifies an operation within a solution that, in fact, can be satisfied via multiple technologies in an architecture, such as browser, load balance, web server, database server, etc.
-A Span represents a single unit of work, such as a database update, or database query. A span is the building block of a Trace, and a Trace starts with a root Span, and optionally nested, or siblinkg spans.
+A Span represents a single unit of work, such as a database update, or database query. A span is the building block of a Trace, and a Trace starts with a root Span, and optionally nested, or sibling spans.
 In this implementation which is only using IRIS as the technology to generate telemetry, a Trace and root Span is started when the SOAP Service is started.
 
 ## Approach for implementation:
