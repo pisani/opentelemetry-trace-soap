@@ -89,7 +89,8 @@ Select each of the web methods you want to test, in order to generate SOAP activ
 http://localhost:16686
 ```
 
-6.  From the home page and the Service drop-down box select the telemetry service:  IRISSERVER:IRIS, and click on the button Find TRACES
+6.  From the home page and the Service drop-down box select the telemetry service:  IRISSERVER:IRIS, (You may need to refresh your page for the option to appear).
+7.  Click on the button Find TRACES
     
 <img src=images/JaegerUI.png alt="Jaeger UI Showing Traces">
 
