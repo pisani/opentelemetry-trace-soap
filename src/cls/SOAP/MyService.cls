@@ -69,4 +69,15 @@ Method RunQuery() As %String [ WebMethod ]
 	return retval
 }
 
+/// The OnInternalFault method may be overridden by the user to change the default SOAP
+///  fault returned by InterSystems IRIS for internal errors.
+/// OnInternalFault is passed the fault which may be modified to suit the applications needs.
+/// After OnInternalFault returns this fault will be sent to the SOAP client.
+/// The %Status that represents the error is also passed.
+ClassMethod OnInternalFault(fault As %SOAP.Fault, status As %Status) [ Private, ServerOnly = 1 ]
+{
+	if $IsObject($get(%OTELSpan)) do ..pyEndSpan(%OTELSpan,$SYSTEM.Status.GetErrorText(status))	
+	Quit
+}
+
 }
