@@ -58,17 +58,18 @@ The IRIS instance hosts three simple SOAP Services:
 
 * GetIRISVersion():
     - Return the $ZV value of the IRIS instance
-    - Other than the default functionality, no additonal observations are made
+    - Other than default telemetry data, no additonal telemetry data is generaated. 
 * Divide(a, b): 
-    - This method takes two integers and returns the value of their division. It arbitrarily starts a child span, and within that a second nested span before completion,
-    - Demonstrates using $$$OTELPushChildSpan(..) macro, in a method with multiple nested span levels. These spans are visible as nested spand in the Jaeger UI
-    - Uses $$$OTELLog(..) with arbitrary logs to add detail to the current span
+    - This method takes two integers and returns the value of their division, during which, default relemetry data is generated.
+    - Additionally, the server side code uses the $$$OTELPushChildSpan(..) macro, to instantiate multiple nested span.
+    - These spans are visible as nested spand in the Jaeger UI
+    - Uses $$$OTELLog(..) with arbitrary data to add detail to the current span
 * RunQuery() 
-    - This method runs a query to count classes
+    - This method runs a query to count classes, during which, default relemetry data is generated.
     - Demos starting an independant span tracking query prepration, and execution
-    - Using $$$OTELPushChildSpan(..) macros available, the method identifies these operations a independant, non-nested logic blocks
+    - Additionally, the server side code uses the $$$OTELPushChildSpan(..) macros available, to instantiate a span that tracks the time taken to prepare the query, and subsequently a seperate span to track query execution.
     - These spans are visible as siblings in the Jaeger UI
-    - Using $$$OTELLog(..) arbitrary logs to add further detail
+    - Uses $$$OTELLog(..) with arbitrary data to add detail to the current span
 
 The Web service functionality is trivial and largely irrelevant, but serves to show telemetry tracing in action. 
 
