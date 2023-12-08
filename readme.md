@@ -23,7 +23,7 @@ In this implementation which is only using IRIS as the technology to generate te
 Subclass IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions in a new calss called SOAP.WebService. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService with SOAP.WebService as the Web Service superclass for implementing SOAP.
 The diagram below illustrates this approach:
 
-<img src="images/Approach.png" alt="Design approach">
+<img src="https://github.com/pisani/OpenTelemetry/blob/main/images/Approach.png" alt="Design approach">
 
 
 
