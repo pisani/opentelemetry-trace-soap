@@ -62,7 +62,7 @@ However - In order to simplify this process, and purely for demonstration purpos
 4.  Using your browser access the SOAP Information and testing pages via this URL. logging in as superuser/SYS if prompted:
 
 ```
-http://localhost:52773/csp/irisapp/SOAP.MyService.cls
+[http://localhost:52773/csp/irisapp/SOAP.MyService.cls](http://localhost:52773/csp/irisapp/SOAP.MyService.cls)
 ```
 
    <img src="https://raw.githubusercontent.com/pisani/OpenTelemetry/master/images/IRISSoapTesting.png" alt="IRIS Soap Testing page">
@@ -91,7 +91,7 @@ Select each of the web methods you want to test, in order to generate SOAP activ
 
 5.  Open another browser tab pull up the Jaeger UI using the following URL
 ```
-http://localhost:16686
+[http://localhost:16686](http://localhost:16686)
 ```
 
 6.  From the home page and the Service drop-down box select the telemetry service:  IRISSERVER:IRIS, (You may need to refresh your page for the option to appear).
