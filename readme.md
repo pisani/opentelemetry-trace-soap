@@ -95,3 +95,8 @@ http://localhost:16686
 The resulting landing page shows you all services contributing telemetry readings and should look something similar to the screenshot below:
 
 <img src=images/JaegerUI.png alt="Jaeger UI Showing Traces">
+
+# Conclusion
+In summary, this article demonstrates how Embedded Python, could be used to add additional features to IRIS, in my case, to implement Observability tracing for SOAP services.  The options available via Python and IRIS's ability to leverage these Python libraries is truely.
+
+I recognise that work can be undertaken to create a more generic OpenTelemetrySupport class that implements the same for REST services, as well as extending current Class Method signatures to tracking timing of any Class method through this framework.
