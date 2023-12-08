@@ -84,7 +84,9 @@ The IRIS instance hosts three simple SOAP Services:
     - Uses $$$OTELLog(..) with arbitrary data to add detail to the current span
 
 The Web service functionality is trivial and largely irrelevant, but serves to show telemetry tracing in action. 
+
 Select each of the web methods you want to test, in order to generate SOAP activity.  To see this implementation generate traces with a Status of 'Error'. use zero (0) as the second number in the Divide() SOAP method in order to force a <DIVDE> error.
+(If you wish, you may also import a Postman collection found under /otherStuff, and perform an iterative automated run of multiple SOAP calls to generate more trace messages quickly)
 
 5.  Open another browser tab pull up the Jaeger UI using the following URL
 ```
@@ -102,8 +104,9 @@ The Telemetry user interface will display record of the timeing for each of the 
 8. Explore the contents of each service call. For example, click on the Operation 'Divide' to expand and view the identified nested spans configured with this SOAP Service, as well as any arbitrary log entries.
 
 
-    <img src="images/JaegerUIDetail.png" alt="JAeger UI Trace Detail">
-   
+    <img src="images/JaegerUIDetail.png" alt="Jaeger UI Trace Detail">
+
+ 
 # Conclusion
 In summary, this article demonstrates how Embedded Python, could be used to add additional features to IRIS, such as, support for Observability tracing for IRIS implemented SOAP services.   
 Looking ahead, this sample code can be enhanced and developed further, for example, the utility can be turned into a more generic OpenTelemetry support class that implements the same for REST services, or, the ability to enable any IRIS Class Method to generate and broadcast telemetry data enablked via a new method signature attribute.
