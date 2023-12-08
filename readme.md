@@ -1,8 +1,6 @@
-# OpenTelemetry Traceing for IRIS SOAP Services
+# OpenTelemetry Tracing for IRIS SOAP Services
 
-## Overview
-A customer recently asked if IRIS supported OpenTelemetry and it could produce information on how long InterSystems IRIS (IRIS) implemented SOAP Services take to complete.  Up until and including versions 2023.3, IRIS does not natively support OpenTelemetry.  
-
+This applications is s aolution that implements OpenTelemetry tracing for IRIS implemented SOAP Web Services.
 It's fair to say that IRIS data platform has several ways to capture, log and analyse the performance of a running instance, this information does not flow out of IRIS through to other opentelemetry components like Agents or Collectors within an implemented OpenTelemetry-supported stack.  Several technologies already support OpenTelemetry and it is fast becoming an adopted standard in the world of Observability.
 
 Whilst there is ongoing development to natively support this observability standard in future IRIS releases, this article explains how, with the help of the Embedded Python and the corresponding Python libraries, IRIS application developers can start publishing Trace events to your OpenTelemetry back-ends with minimal effort.  More importantly, this gives my customer somethign to get up and running with today. 
