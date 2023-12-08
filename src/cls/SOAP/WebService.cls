@@ -258,4 +258,18 @@ Method OnPreSOAP(mode As %String, action As %String, request) [ Internal, Server
 	}
 }
 
+/// The OnInternalFault method may be overridden by the user to change the default SOAP
+///  fault returned by InterSystems IRIS for internal errors.
+/// OnInternalFault is passed the fault which may be modified to suit the applications needs.
+/// After OnInternalFault returns this fault will be sent to the SOAP client.
+/// The %Status that represents the error is also passed.
+ClassMethod OnInternalFault(fault As %SOAP.Fault, status As %Status) [ Private, ServerOnly = 1 ]
+{
+	/// bring into focus the latest current span
+	set currentSpan=$get(%OTELSpanArr(0))
+	
+	if $IsObject(currentSpan) do ..pyEndSpan(currentSpan,$SYSTEM.Status.GetErrorText(status))	
+	Quit
+}
+
 }
