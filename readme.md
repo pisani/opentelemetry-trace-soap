@@ -20,13 +20,14 @@ A Span represents a single unit of work, such as a database update, or database 
 In this implementation which is only using IRIS as the technology to generate telemetry, a Trace and root Span is started when the SOAP Service is started.
 
 ## Approach for implementation:
-Extend IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService to SOAP.WebService as the Web Services implementation class).  The Diagram below illustrates this approach:
+Subclass IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions in a new calss called SOAP.WebService. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService with SOAP.WebService as the Web Service superclass for implementing SOAP.
+The diagram below illustrates this approach:
 
 <img src="images/Approach.png" alt="Design approach">
 
 
 
-## Features:
+## Features of this implementation:
 
 * By default, every SOAP Service will be tracked and reports trace information.
 * When a SOAP Service is used for the first time, the implementation will initalise an OpenTelemetry Tracer object. A combination of the IRIS Server name and Instance is provided as the telemetry source, and, the SOAP Action used as th name for the default root span tracking the soap service.
