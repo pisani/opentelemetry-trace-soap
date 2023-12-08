@@ -17,6 +17,10 @@ Observability generally comprises of three main aspects:
   
 This application focuses solely on Tracing of SOAP Services.
 
+A Trace identifies an operation within a solution that, in fact, can be satisfied via multiple technologies in an architecture, such as browser, load balance, web server, database server, etc.
+A Span represents a single unit of work, such as a database update, or database query. A span is the building block of a Trace, and a Trace starts with a root Span, and optionally nested, or siblinkg spans.
+In this implementation which is only using IRIS as the technology to generate telemetry, a Trace and root Span is started when the SOAP Service is started.
+
 ## Approach for implementation:
 Extend IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService to SOAP.WebService as the Web Services implementation class).  The Diagram below illustrates this approach:
 
@@ -103,6 +107,5 @@ The Telemetry user interface will display record of the timeing for each of the 
 
    
 # Conclusion
-In summary, this article demonstrates how Embedded Python, could be used to add additional features to IRIS, in my case, to implement Observability tracing for SOAP services.  The options available via Python and IRIS's ability to leverage these Python libraries is truely.
-
-I recognise that work can be undertaken to create a more generic OpenTelemetrySupport class that implements the same for REST services, as well as extending current Class Method signatures to tracking timing of any Class method through this framework.
+In summary, this article demonstrates how Embedded Python, could be used to add additional features to IRIS, such as, support for Observability tracing for IRIS implemented SOAP services.   
+Looking ahead, this sample can be enhanced and developed forther, for example, the utility can be turned into a more generic OpenTelemetry support class that implements the same for REST services, or, the ability to enable any IRIS Class Method to generate and broadcast telemetry data.
