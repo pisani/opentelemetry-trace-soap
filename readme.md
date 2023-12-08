@@ -1,8 +1,6 @@
-# OpenTelemetry Traceing for IRIS SOAP Services
+# OpenTelemetry Tracing for IRIS SOAP Services
 
-## Overview
-A customer recently asked if IRIS supported OpenTelemetry and it could produce information on how long InterSystems IRIS (IRIS) implemented SOAP Services take to complete.  Up until and including versions 2023.3, IRIS does not natively support OpenTelemetry.  
-
+This applications is s aolution that implements OpenTelemetry tracing for IRIS implemented SOAP Web Services.
 It's fair to say that IRIS data platform has several ways to capture, log and analyse the performance of a running instance, this information does not flow out of IRIS through to other opentelemetry components like Agents or Collectors within an implemented OpenTelemetry-supported stack.  Several technologies already support OpenTelemetry and it is fast becoming an adopted standard in the world of Observability.
 
 Whilst there is ongoing development to natively support this observability standard in future IRIS releases, this article explains how, with the help of the Embedded Python and the corresponding Python libraries, IRIS application developers can start publishing Trace events to your OpenTelemetry back-ends with minimal effort.  More importantly, this gives my customer somethign to get up and running with today. 
@@ -22,13 +20,14 @@ A Span represents a single unit of work, such as a database update, or database 
 In this implementation which is only using IRIS as the technology to generate telemetry, a Trace and root Span is started when the SOAP Service is started.
 
 ## Approach for implementation:
-Extend IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService to SOAP.WebService as the Web Services implementation class).  The Diagram below illustrates this approach:
+Subclass IRIS's %SOAP.WebService class with OpenTelemetry implementation logic and Python library functions in a new calss called SOAP.WebService. Include Macros that can be used in user code to further contribute to observability and tracing. Minimal changes to the existing SOAP implementation should be needed (replace use of %SOAP.WebService with SOAP.WebService as the Web Service superclass for implementing SOAP.
+The diagram below illustrates this approach:
 
 <img src="images/Approach.png" alt="Design approach">
 
 
 
-## Features:
+## Features of this implementation:
 
 * By default, every SOAP Service will be tracked and reports trace information.
 * When a SOAP Service is used for the first time, the implementation will initalise an OpenTelemetry Tracer object. A combination of the IRIS Server name and Instance is provided as the telemetry source, and, the SOAP Action used as th name for the default root span tracking the soap service.
@@ -86,7 +85,9 @@ The IRIS instance hosts three simple SOAP Services:
     - Uses $$$OTELLog(..) with arbitrary data to add detail to the current span
 
 The Web service functionality is trivial and largely irrelevant, but serves to show telemetry tracing in action. 
+
 Select each of the web methods you want to test, in order to generate SOAP activity.  To see this implementation generate traces with a Status of 'Error'. use zero (0) as the second number in the Divide() SOAP method in order to force a <DIVDE> error.
+(If you wish, you may also import a Postman collection found under /otherStuff, and perform an iterative automated run of multiple SOAP calls to generate more trace messages quickly)
 
 5.  Open another browser tab pull up the Jaeger UI using the following URL
 ```
@@ -104,8 +105,9 @@ The Telemetry user interface will display record of the timeing for each of the 
 8. Explore the contents of each service call. For example, click on the Operation 'Divide' to expand and view the identified nested spans configured with this SOAP Service, as well as any arbitrary log entries.
 
 
-    <img src="images/JaegerUIDetail.png" alt="JAeger UI Trace Detail">
-   
+    <img src="images/JaegerUIDetail.png" alt="Jaeger UI Trace Detail">
+
+ 
 # Conclusion
 In summary, this article demonstrates how Embedded Python, could be used to add additional features to IRIS, such as, support for Observability tracing for IRIS implemented SOAP services.   
 Looking ahead, this sample code can be enhanced and developed further, for example, the utility can be turned into a more generic OpenTelemetry support class that implements the same for REST services, or, the ability to enable any IRIS Class Method to generate and broadcast telemetry data enablked via a new method signature attribute.
