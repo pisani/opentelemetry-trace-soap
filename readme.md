@@ -52,7 +52,20 @@ Once the iris image is build, in the same directory type the following to start 
 $ docker-compose up -d
 ```
 
-This will startup two containers - the Jaeger OpenTelemetry target backend container (also exposing a user interface), and, an instance of IRIS which will serve as the SOAP Web Services server endpoint.  Three simple webservices have been developed in the IRIS instance for testing the solution.
+This will startup two containers - the Jaeger OpenTelemetry target backend container (also exposing a user interface), and, an instance of IRIS which will serve as the SOAP Web Services server endpoint.  
+
+## How to Test and view the results.
+Generating trace information for the SOAP Web Methods can be done by building SOAP client (using your favourite technology) and then calling these services, just as any user or application would do in a real-world application. 
+
+However - In order to simplify this process, and purely for demonstration purposes, we will leverage IRIS's helper CSP pages that allows us to call these SOAP methods from a browser:
+
+Using your browser access the SOAP Information and testing pages via this URL. logging in as superuser/SYS if prompted:
+
+```
+http://localhost:52773/csp/irisapp/SOAP.MyService.cls
+```
+<img src=images/IRISSoapTesting.png alt="IRIS Soap Testing page">
+(Note: These pages are not enabled by default and security within the running IRIS instance had to be relaxed to enable this feature, for ease of testing)
 
 The IRIS instance hosts three simple SOAP Services:
 
@@ -72,21 +85,6 @@ The IRIS instance hosts three simple SOAP Services:
     - Uses $$$OTELLog(..) with arbitrary data to add detail to the current span
 
 The Web service functionality is trivial and largely irrelevant, but serves to show telemetry tracing in action. 
-
-## How to Test and view the results.
-Generating trace information for the SOAP Web Methods can be done by building SOAP client (using your favourite technology) and then calling these services, just as any user or application would do in a real-world application. 
-
-However - In order to simplify this process, and purely for demonstration purposes, we will leverage IRIS's helper CSP pages that allows us to call these SOAP methods from a browser:
-
-Using your browser access the SOAP Information and testing pages via this URL. logging in as superuser/SYS if prompted:
-
-```
-http://localhost:52773/csp/irisapp/SOAP.MyService.cls
-```
-<img src=images/IRISSoapTesting.png alt="IRIS Soap Testing page">
-(Note: These pages are not enabled by default and security within the running IRIS instance had to be relaxed to enable this feature, for ease of testing)
-
-
 Select each of the web methods you want to test, in order to generate SOAP activity.  To see this implementation generate traces with a Status of 'Error'. use zero (0) as the second number in the Divide() SOAP method in order to force a <DIVDE> error.
 
 Open another browser tab pull up the Jaeger UI via the following URL
