@@ -63,7 +63,6 @@ However - In order to simplify this process, and purely for demonstration purpos
 http://localhost:52773/csp/irisapp/SOAP.MyService.cls
 ```
 <img src=images/IRISSoapTesting.png alt="IRIS Soap Testing page">
-(Note: These pages are not enabled by default and security within the running IRIS instance had to be relaxed to enable this feature, for ease of testing)
 
 The IRIS instance hosts three simple SOAP Services:
 
